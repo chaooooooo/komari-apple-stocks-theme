@@ -20,15 +20,15 @@ export function Header({ searchQuery, onSearchChange }: HeaderProps) {
   const { siteName } = useSiteSettings()
 
   return (
-    <header className="mb-5 min-w-0 xl:mb-6">
-      <div className="mb-4 flex items-center gap-3 px-1 xl:hidden">
-        <span className="truncate text-3xl font-bold tracking-tight text-zinc-100">
+    <header className="mb-6 flex min-w-0 flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
+      <div className="min-w-0 shrink-0">
+        <span className="block truncate text-3xl font-bold tracking-tight text-zinc-100">
           {siteName}
         </span>
       </div>
 
-      <div className="flex min-w-0 items-center gap-2 sm:gap-3 xl:justify-end">
-        <div className="flex h-11 min-w-0 flex-1 items-center gap-2 rounded-full border border-white/[0.08] bg-black/30 px-4 text-sm text-zinc-500 shadow-lg shadow-black/20 transition focus-within:border-emerald-500/40 xl:max-w-[420px]">
+      <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+        <div className="flex h-11 min-w-0 flex-1 items-center gap-2 rounded-full border border-white/[0.08] bg-black/30 px-4 text-sm text-zinc-500 shadow-lg shadow-black/20 transition focus-within:border-emerald-500/40 xl:w-[420px] xl:flex-none">
           <Search className="h-4 w-4 shrink-0" />
 
           <input

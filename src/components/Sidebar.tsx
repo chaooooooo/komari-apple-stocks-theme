@@ -1,5 +1,4 @@
 import { Globe2 } from 'lucide-react'
-import { useSiteSettings } from '../hooks/useSiteSettings'
 import { useI18n } from '../i18n/I18nContext'
 import { getCountryLabel, getRegionLabel } from '../utils/region'
 import { useKomariData } from '../hooks/useKomariData'
@@ -31,6 +30,7 @@ function buildSparklinePath(history?: NodeMetricSample[]) {
     .map((item, index) => {
       const x = 2 + (index / Math.max(source.length - 1, 1)) * width
       const y = 2 + height - (item.cpu / 100) * height
+
       return `${index === 0 ? 'M' : 'L'}${x.toFixed(2)} ${y.toFixed(2)}`
     })
     .join(' ')
@@ -55,6 +55,7 @@ function MiniSparkline({
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+
       <path
         d={`${path} L118 32 L2 32 Z`}
         fill={danger ? 'rgba(249,115,22,0.18)' : 'rgba(34,197,94,0.18)'}
@@ -78,10 +79,8 @@ function getBillingText(node: NodeItem) {
 
   if (!billing) return ''
 
-  // 价格为 0：不显示账单标签
   if (billing.price === 0) return ''
 
-  // 价格为 -1：显示免费
   if (billing.price === -1) {
     return '免费'
   }
@@ -118,6 +117,7 @@ function MetaBadges({ node }: { node: NodeItem }) {
       text: tag,
       className: 'bg-emerald-500/12 text-emerald-300',
     })),
+
     node.group
       ? {
           key: 'group',
@@ -125,6 +125,7 @@ function MetaBadges({ node }: { node: NodeItem }) {
           className: 'bg-sky-500/12 text-sky-300',
         }
       : null,
+
     node.publicRemark
       ? {
           key: 'remark',
@@ -132,6 +133,7 @@ function MetaBadges({ node }: { node: NodeItem }) {
           className: 'bg-purple-500/12 text-purple-300',
         }
       : null,
+
     billingText
       ? {
           key: 'billing',
@@ -174,10 +176,8 @@ export function Sidebar({
   searchQuery = '',
 }: SidebarProps) {
   const { t, lang } = useI18n()
-const { nodes } = useKomariData()
-const { siteName } = useSiteSettings()
+  const { nodes } = useKomariData()
 
-  const showLogo = variant === 'full'
   const showOverviewButton = variant === 'full' || variant === 'mobileTop'
   const showWatchlist = variant === 'full' || variant === 'watchlistOnly'
 
@@ -209,14 +209,6 @@ const { siteName } = useSiteSettings()
 
   return (
     <aside className="w-full shrink-0 xl:w-[360px]">
-      {showLogo && (
-        <div className="mb-5 hidden min-w-0 px-1 sm:px-3 xl:mb-8 xl:block">
-    <span className="block truncate text-3xl font-bold tracking-tight text-zinc-100">
-      {siteName}
-    </span>
-  </div>
-      )}
-
       {showOverviewButton && (
         <button
           onClick={onOverviewClick}
@@ -283,6 +275,7 @@ const { siteName } = useSiteSettings()
                         <p className="truncate text-sm font-semibold text-zinc-100">
                           {node.name}
                         </p>
+
                         <p className="mt-1 truncate text-sm text-zinc-500">
                           {getRegionLabel(node, lang)}
                         </p>
@@ -293,10 +286,10 @@ const { siteName } = useSiteSettings()
                       </div>
 
                       <div className="w-16 shrink-0 text-right">
-  <p className="text-xl font-semibold tabular-nums text-zinc-100">
-    {node.cpu.toFixed(2)}%
-  </p>
-</div>
+                        <p className="text-xl font-semibold tabular-nums text-zinc-100">
+                          {node.cpu.toFixed(2)}%
+                        </p>
+                      </div>
                     </div>
 
                     <MetaBadges node={node} />
