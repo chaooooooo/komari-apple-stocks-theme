@@ -1,4 +1,4 @@
-import { Moon, Search, Sun, X } from 'lucide-react'
+import { Moon, Search, Settings, Sun, X } from 'lucide-react'
 import { LanguagePopover } from './LanguagePopover'
 import { ValueCalculatorPopover } from './ValueCalculatorPopover'
 import { useI18n } from '../i18n/I18nContext'
@@ -8,6 +8,10 @@ import { useSiteSettings } from '../hooks/useSiteSettings'
 type HeaderProps = {
   searchQuery: string
   onSearchChange: (value: string) => void
+}
+
+function openAdminPanel() {
+  window.location.href = '/admin'
 }
 
 export function Header({ searchQuery, onSearchChange }: HeaderProps) {
@@ -64,8 +68,13 @@ export function Header({ searchQuery, onSearchChange }: HeaderProps) {
             )}
           </button>
 
-          <button className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.06] text-sm font-semibold text-zinc-100 shadow-lg shadow-black/20">
-            {siteName.slice(0, 1).toUpperCase()}
+          <button
+            type="button"
+            title="管理界面"
+            onClick={openAdminPanel}
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.06] text-zinc-300 shadow-lg shadow-black/20 transition hover:bg-white/[0.09] hover:text-white"
+          >
+            <Settings className="h-5 w-5" />
           </button>
         </div>
       </div>
