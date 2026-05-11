@@ -26,6 +26,17 @@
 
 ## 安装使用
 
+### 方法一：使用Github链接
+
+1. 进入 Komari 后台
+2. 打开「主题管理」
+3. 点击「导入主题」
+4. 输入本项目链接`https://github.com/ErrorCode36459/komari-apple-stocks-theme/`
+5. 点击「检测」
+6. 启用主题
+
+### 方法二：下载 Release 主题包
+
 1. 前往本仓库的 Releases 页面
 2. 下载最新版本的 `komari-apple-stocks-theme.zip`
 3. 进入 Komari 后台
