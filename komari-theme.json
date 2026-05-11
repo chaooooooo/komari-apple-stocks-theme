@@ -1,0 +1,9 @@
+{
+  "name": "Komari Apple Stocks Theme",
+  "short": "AppleStocks",
+  "description": "A Komari theme inspired by Apple Stocks, with server overview, world map, load charts, latency charts, i18n, and responsive layout.",
+  "version": "1.0.0",
+  "author": "zmccc",
+  "url": "",
+  "preview": "preview.png"
+}
