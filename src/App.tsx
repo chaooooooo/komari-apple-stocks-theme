@@ -7,19 +7,16 @@ import { NodePage } from './pages/NodePage'
 import { useKomariData } from './hooks/useKomariData'
 import { useI18n } from './i18n/I18nContext'
 import { useLocalStorage } from './hooks/useLocalStorage'
+import { useState } from 'react'
 
 export default function App() {
   const { nodes, loading, error, usingFallback, refresh } = useKomariData()
   const { t } = useI18n()
 
-  const [activePage, setActivePage] = useLocalStorage<'overview' | 'node'>(
-    'komari-active-page',
-    'overview',
-  )
-  const [activeNodeId, setActiveNodeId] = useLocalStorage(
-    'komari-active-node-id',
-    nodes[0]?.id ?? '',
-  )
+  const [activePage, setActivePage] = useState<'overview' | 'node'>('overview')
+  
+  const [activeNodeId, setActiveNodeId] = useState('')
+
   const [searchQuery, setSearchQuery] = useLocalStorage('komari-search-query', '')
 
   const activeNode = nodes.find((node) => node.id === activeNodeId)
